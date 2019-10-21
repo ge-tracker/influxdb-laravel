@@ -24,17 +24,47 @@ This package requires PHP 7.1 - 7.3, and supports Laravel 5.6 - 6.
 
 This package's configuration, after publishing, will be located at `config/influxdb.php`.
 
-##### Default Connection Name
+**Default Connection Name**
 
 This option (`'default'`) is where you may specify which  of the connections below you wish to use as your default connection for  all work. Of course, you may use many connections at once using the  manager class. The default value for this setting is `'main'`.
 
-##### InfluxDB Connections
+**InfluxDB Connections**
 
 This option (`'connections'`) is where each of the  connections are setup for your application. An example configuration has  been included, but you may add as many connections as you would like.
 
 ## Usage
 
-The main `InfluxDBManager` class 
+The underlying InfluxDB connection instance can be accessed via Facade or Dependency Injection. Unless specified, the package will use the `main` connection by default.
+
+**Facade**
+
+```php
+<?php
+
+// create an array of points
+$points = array(
+    new InfluxDB\Point(
+        'test_metric', // name of the measurement
+        null, // the measurement value
+        ['host' => 'server01', 'region' => 'us-west'], // optional tags
+        ['cpucount' => 10], // optional additional fields
+        time() // Time precision has to be set to seconds!
+    ),
+    new InfluxDB\Point(
+        'test_metric', // name of the measurement
+        null, // the measurement value
+        ['host' => 'server01', 'region' => 'us-west'], // optional tags
+        ['cpucount' => 10], // optional additional fields
+        time() // Time precision has to be set to seconds!
+    )
+);
+
+$result = InfluxDB::writePoints($points, \InfluxDB\Database::PRECISION_SECONDS);
+```
+
+**Dependency Injection** 
+
+DI can be used by type-hinting the `InfluxDBManager` class:
 
 ```php
 <?php
@@ -46,16 +76,16 @@ use GeTracker\InfluxDBLaravel\InfluxDBManager;
 class Foo
 {
     /** @var InfluxDBManager */
-    protected $influxDB;
+    protected $influxDb;
 
-    public function __construct(InfluxDBManager $influxDB)
+    public function __construct(InfluxDBManager $influxDb)
     {
         $this->influxDB = $influxDB;
     }
 
     public function bar()
     {
-        return $this->influxDB->getQueryBuilder()
+        return $this->influxDb->getQueryBuilder()
             ->select('usage, idle')
             ->from('cpu')
             ->where([
@@ -67,3 +97,20 @@ class Foo
 }
 ```
 
+### Connections
+
+Both the `InfluxDBManager` and `InfluxDB` facade provide a `connection()` method, which will allow another InfluxDB connection to be interacted with:
+
+```php
+// The `main` connection will be used
+$manager->query("SELECT * FROM cpu");
+
+// The `alternative` connection will be used
+$manager->connection('alternative')->query("SELECT * FROM cpu");
+```
+
+## Credits
+
+* [GE Tracker](https://www.ge-tracker.com)
+* [InfluxData](https://www.influxdata.com)
+* [GrahamCampbell](https://github.com/GrahamCampbell)
