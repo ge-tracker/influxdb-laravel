@@ -4,12 +4,12 @@ This package is a Laravel wrapper for the [influxdb-php](https://packagist.org/p
 
 ## Installation
 
-This package requires PHP 7.1+, and supports Laravel 5.6 - 8.
+This package requires PHP 7.4+, Laravel 8+ and works with InfluxDB 2.0. For InfluxDB 1.x, see below.
 
 1. To install the latest version of the package, run the following command in your terminal:
 
     ```bash
-    composer require ge-tracker/influxdb-laravel
+    $ composer require ge-tracker/influxdb-laravel
     ```
 
     Laravel will auto-discover the package's service provider, located at `GeTracker\InfluxDBLaravel\InfluxDBLaravelServiceProvider`.
@@ -17,8 +17,16 @@ This package requires PHP 7.1+, and supports Laravel 5.6 - 8.
 2. Next, you should publish the application's configuration file
 
     ```bash
-    php artisan vendor:publish
+    $ php artisan vendor:publish
     ```
+
+### InfluxDB 1.x
+
+To install a 1.7x compatible version, please install version 1.x of this package. You can [view the 1.x configuration options on GitHub](https://github.com/ge-tracker/influxdb-laravel/tree/v1).
+
+```bash
+$ composer require "ge-tracker/influxdb-laravel:^1.0"
+```
 
 ## Configuration
 
@@ -42,7 +50,7 @@ The underlying InfluxDB connection instance can be accessed via Facade or Depend
 <?php
 
 // create an array of points
-$points = array(
+$points = [
     new InfluxDB\Point(
         'test_metric', // name of the measurement
         null, // the measurement value
@@ -57,7 +65,7 @@ $points = array(
         ['cpucount' => 10], // optional additional fields
         time() // Time precision has to be set to seconds!
     )
-);
+];
 
 $result = InfluxDB::writePoints($points, \InfluxDB\Database::PRECISION_SECONDS);
 ```

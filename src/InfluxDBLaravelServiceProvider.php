@@ -78,7 +78,7 @@ class InfluxDBLaravelServiceProvider extends ServiceProvider
             return $manager->connection();
         });
 
-        $this->app->alias('influxdb.connection', \InfluxDB\Database::class);
+        $this->app->alias('influxdb.connection', \InfluxDB2\Client::class);
     }
 
     public function provides()

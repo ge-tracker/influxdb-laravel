@@ -6,7 +6,7 @@ use GrahamCampbell\Manager\AbstractManager;
 use Illuminate\Contracts\Config\Repository;
 
 /**
- * @mixin \InfluxDB\Database
+ * @mixin \InfluxDB2\Client
  *
  * @author James Austen <james@ge-tracker.com>
  */
@@ -14,10 +14,8 @@ class InfluxDBManager extends AbstractManager
 {
     /**
      * The factory instance.
-     *
-     * @var InfluxDBFactory
      */
-    protected $factory;
+    protected InfluxDBFactory $factory;
 
     public function __construct(Repository $config, InfluxDBFactory $factory)
     {
@@ -30,9 +28,9 @@ class InfluxDBManager extends AbstractManager
      *
      * @param array $config
      *
-     * @return \InfluxDB\Database
+     * @return \InfluxDB2\Client
      */
-    protected function createConnection(array $config)
+    protected function createConnection(array $config): \InfluxDB2\Client
     {
         return $this->factory->make($config);
     }
@@ -42,7 +40,7 @@ class InfluxDBManager extends AbstractManager
      *
      * @return string
      */
-    protected function getConfigName()
+    protected function getConfigName(): string
     {
         return 'influxdb';
     }

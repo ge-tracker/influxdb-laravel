@@ -27,15 +27,12 @@ return [
     'connections' => [
 
         'main' => [
-            'host'           => env('INFLUXDB_HOST'),
-            'port'           => env('INFLUXDB_PORT', 8086),
-            'username'       => env('INFLUXDB_USER'),
-            'password'       => env('INFLUXDB_PASSWORD'),
-            'database'       => env('INFLUXDB_DATABASE'),
-            'ssl'            => env('INFLUXDB_SSL', false),
-            'verifySSL'      => env('INFLUXDB_VERIFY_SSL', false),
-            'timeout'        => env('INFLUXDB_TIMEOUT', 0),
-            'connectTimeout' => env('INFLUXDB_CONNECT_TIMEOUT', 0),
+            'url'       => env('INFLUXDB_URL'),
+            'token'     => env('INFLUXDB_TOKEN'),
+            'bucket'    => env('INFLUXDB_BUCKET'),
+            'org'       => env('INFLUXDB_ORG'),
+            'verifySSL' => env('INFLUXDB_VERIFY_SSL', false),
+            'precision' => env('INFLUXDB_PRECISION', 'ns'),
         ],
 
     ],
