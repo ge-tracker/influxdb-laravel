@@ -3,7 +3,7 @@
     "description": "Provide InfluxDB connections to Laravel",
     "type": "library",
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8.0",
         "graham-campbell/manager": "^4.6",
         "illuminate/contracts": "^8.0",
         "illuminate/support": "^8.0",
