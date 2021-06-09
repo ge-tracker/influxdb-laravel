@@ -4,7 +4,7 @@ This package is a Laravel wrapper for the [influxdb-php](https://packagist.org/p
 
 ## Installation
 
-This package requires PHP 7.4+, Laravel 8+ and works with InfluxDB 2.0. For InfluxDB 1.x, see below.
+This package requires PHP 7.4+, Laravel 8+ and works with InfluxDB 2.0. For InfluxDB 1.x, see the [1.x setup instructions in the next section](#user-content-influxdb-1x).
 
 1. To install the latest version of the package, run the following command in your terminal:
 
