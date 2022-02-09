@@ -25,19 +25,4 @@ class InfluxDBFactory
             'precision' => $config['precision'],
         ]);
     }
-
-//    /**
-//     * @param string $precision
-//     *
-//     * @return string
-//     */
-//    private function getWritePrecision(string $precision): string
-//    {
-//        if (!in_array($precision, WritePrecision::getAllowableEnumValues())) {
-//            // throw
-//            $precision = 'ns';
-//        }
-//
-//        return constant(WritePrecision::class . '::' . strtoupper($precision));
-//    }
 }

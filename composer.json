@@ -5,8 +5,8 @@
     "require": {
         "php": "^7.4|^8.0",
         "graham-campbell/manager": "^4.6",
-        "illuminate/contracts": "^8.0",
-        "illuminate/support": "^8.0",
+        "illuminate/contracts": "^8.0|^9.0",
+        "illuminate/support": "^8.0|^9.0",
         "influxdata/influxdb-client-php": "^1.11.0"
     },
     "require-dev": {
