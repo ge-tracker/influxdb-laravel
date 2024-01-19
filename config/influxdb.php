@@ -33,6 +33,7 @@ return [
             'org'       => env('INFLUXDB_ORG'),
             'verifySSL' => env('INFLUXDB_VERIFY_SSL', false),
             'precision' => env('INFLUXDB_PRECISION', 'ns'),
+            'debug'     => env('INFLUXDB_DEBUG', false),
         ],
 
     ],

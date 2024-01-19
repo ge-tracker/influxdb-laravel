@@ -4,7 +4,7 @@ This package is a Laravel wrapper for the [influxdb-php](https://packagist.org/p
 
 ## Installation
 
-This package requires PHP 7.4+, Laravel 8+ and works with InfluxDB 2.0. For InfluxDB 1.x, see the [1.x setup instructions in the next section](#influxdb-1x).
+This package requires PHP 7.4+, Laravel 8+ and works with InfluxDB 2.0/1.8+. For InfluxDB 1.7 or earlier, see the [1.x setup instructions in the next section](#influxdb-1x).
 
 1. To install the latest version of the package, run the following command in your terminal:
 
@@ -83,11 +83,9 @@ use GeTracker\InfluxDBLaravel\InfluxDBManager;
 
 class Foo
 {
-    /** @var InfluxDBManager */
-    protected $influxDb;
-
-    public function __construct(InfluxDBManager $influxDb)
-    {
+    public function __construct(
+        protected InfluxDBManager $influxDb
+    ) {
         $this->influxDB = $influxDB;
     }
 
