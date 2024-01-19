@@ -23,6 +23,7 @@ class InfluxDBFactory
             'org'       => $config['org'],
             'verifySSL' => $config['verifySSL'],
             'precision' => $config['precision'],
+            'debug'     => $config['debug'] ?? false,
         ]);
     }
 }
