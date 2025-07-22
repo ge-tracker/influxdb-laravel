@@ -24,7 +24,7 @@ class RefPoint extends Point
      *
      * @param Point|array $point
      *
-     * @return \GeTracker\InfluxDBLaravel\Support\RefPoint|array
+     * @return \GeTracker\InfluxDBLaravel\Support\RefPoint|\GeTracker\InfluxDBLaravel\Support\RefPoint[]|array
      */
     public static function from(Point|array $point): self|array
     {
