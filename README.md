@@ -115,6 +115,15 @@ $manager->query("SELECT * FROM cpu");
 $manager->connection('alternative')->query("SELECT * FROM cpu");
 ```
 
+### Reflective accessor
+
+The [influxdata/influxdb-client-php](https://packagist.org/packages/influxdata/influxdb-client-php) library removed several methods from their `Point` class such as `getMeasurement`, which are helpful for testing. This library features a reflective accessor to bring back this functionality.
+
+```php
+$refPoint = RefPoint::from($points);
+$refPoint[0]->getMeasurement()
+```
+
 ## Credits
 
 * [GE Tracker](https://www.ge-tracker.com)
